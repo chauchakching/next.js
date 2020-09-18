@@ -1,5 +1,5 @@
 import { codeFrameColumns } from '@babel/code-frame'
-import chalk from 'next/dist/compiled/chalk'
+import chalk from 'chalk'
 import path from 'path'
 
 export enum DiagnosticCategory {
