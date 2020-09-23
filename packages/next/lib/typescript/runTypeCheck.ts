@@ -45,6 +45,18 @@ export async function runTypeCheck(
     ) ?? allDiagnostics.find((d) => d.category === DiagnosticCategory.Error)
 
   if (firstError) {
+    const es = allDiagnostics.filter(
+      (d) => d.category === DiagnosticCategory.Error
+    )
+    console.log(`--- all errors (${es.length}) ---`)
+    for (const e of es) {
+      console.log(
+        '--- error --->',
+        new TypeScriptCompileError(await getFormattedDiagnostic(ts, baseDir, e))
+      )
+    }
+    // console.log(es)
+    console.log('--- found first error whiling building TS ---')
     throw new TypeScriptCompileError(
       await getFormattedDiagnostic(ts, baseDir, firstError)
     )
